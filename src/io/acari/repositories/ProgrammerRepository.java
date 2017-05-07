@@ -16,9 +16,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ProgrammerRepository {
-    public static final int PROGRAMMER_PER_THREAD = 10000;
+    public static final int PROGRAMMER_PER_THREAD = 100;
     private static final int THREADS = 4;
-    public static final int NUM_PROGRAMMERS = PROGRAMMER_PER_THREAD * THREADS;
     private final SecureRandom secureRandom = new SecureRandom();
     private final Random ranbo = new Random(9001);
     private final ComputerRepository computerRepository;
@@ -26,10 +25,14 @@ public class ProgrammerRepository {
     private final LinkedList<Programmer> programmerCollection = new LinkedList<>();
     private ExecutorService executorService = Executors.newFixedThreadPool(THREADS);
 
-    public ProgrammerRepository(ComputerRepository computerRepository, LanguageRepository languageRepository) {
+    private ProgrammerRepository(ComputerRepository computerRepository, LanguageRepository languageRepository) {
         this.computerRepository = computerRepository;
         this.languageRepository = languageRepository;
         setUp();
+    }
+
+    public static ProgrammerRepository newProgrammerRepository(){
+        return new ProgrammerRepository(new ComputerRepository(), new LanguageRepository());
     }
 
     private void setUp() {
@@ -48,14 +51,11 @@ public class ProgrammerRepository {
                 e.printStackTrace();
             }
         }
-    }
-
-    public void shutDown() {
         executorService.shutdown();
     }
 
     public Stream<Programmer> getProgrammers() {
-        return programmerCollection.parallelStream();
+        return programmerCollection.stream();
     }
 
 }
