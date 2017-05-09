@@ -64,7 +64,7 @@ public class Main {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (EOFException ignored) {
-                /**
+                /*
                  * Reached the end of the file.
                  * No more objects to read
                  */
