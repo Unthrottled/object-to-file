@@ -2,6 +2,7 @@
 
 This is a gradle-based Java project consisting of the first example provided in this [post](http://blog.acari.io/2017/05/07/Objects-from-file.html).
 Which demonstrates the how object serialization to a file happens and why this is helpful in the first place.
+
 When the project will run it will log some messages about how many objects where written to and from a file created it the 
 directory the program was run in.
 
