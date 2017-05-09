@@ -4,3 +4,5 @@ out/
 *.data
 build/
 .gradle/
+*.ipr
+*.iws
