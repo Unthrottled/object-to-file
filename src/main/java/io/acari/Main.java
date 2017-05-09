@@ -3,6 +3,8 @@ package io.acari;
 import io.acari.pojo.ExternalizableProgrammer;
 import io.acari.pojo.Programmer;
 import io.acari.repositories.ProgrammerRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -14,6 +16,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class Main {
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) throws IOException {
         ProgrammerRepository programmerRepository = ProgrammerRepository.newProgrammerRepository();
@@ -69,7 +72,7 @@ public class Main {
                  * No more objects to read
                  */
             }
-            System.out.format("%d %s read from file!\n", programmers.size(), simpleName);
+            logger.info("{} {} read from {}!\n", programmers.size(), simpleName, fileToWrite.toAbsolutePath());
         }
     }
 }
