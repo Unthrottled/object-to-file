@@ -59,10 +59,10 @@ public class Main {
 
         //Read objects from file.
         try (ObjectInputStream in = new ObjectInputStream(Files.newInputStream(fileToWrite, StandardOpenOption.READ))) {
-            List<T> programmers = new LinkedList<>();
+            List<T> serializableObjects = new LinkedList<>();
             try {
                 while (true) {
-                    programmers.add((T) in.readObject());
+                    serializableObjects.add((T) in.readObject());
                 }
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
@@ -72,7 +72,7 @@ public class Main {
                  * No more objects to read
                  */
             }
-            logger.info("{} {} read from {}!\n", programmers.size(), simpleName, fileToWrite.toAbsolutePath());
+            logger.info("{} {} read from {}!\n", serializableObjects.size(), simpleName, fileToWrite.toAbsolutePath());
         }
     }
 }
